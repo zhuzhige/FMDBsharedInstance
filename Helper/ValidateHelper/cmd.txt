@@ -1,0 +1,93 @@
+//显示隐藏文件
+defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder
+//取消显示隐藏文件
+defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder
+
+//正则
+http://www.txt2re.com
+
+
+查阅了无数的资料，总结了最完整版的Cocoapods安装教程
+
+Install Cocoapods
+
+1.开启 terminal
+2.移除现有 Ruby 默认源
+$ gem sources --remove https://rubygems.org/
+
+3.使用新的源
+$ gem sources -a https://ruby.taobao.org/
+然后升级gem
+$ sudo gem update --system
+
+4.验证新源是否替换成功
+$ gem sources -l
+
+注：
+检查pod 是否安装
+pod --version
+
+如果安装就先卸载 cocoapods
+$ sudo gem uninstall cocoapods
+
+5.安装 CocoaPods
+$ sudo gem install cocoapods
+
+$ pod setup
+
+备注：苹果系统升级 OS X EL Capitan 后安装改为:
+
+$ sudo gem install -n /usr/local/bin cocoapods
+
+$ pod setup
+
+出现Setting up CocoaPods master repo，半天没有任何反应。原因无他，因为那堵墙阻挡了cocoapods.org。。。
+gitcafe和oschina都是国内的服务器，可以用它们CocoaPods索引库的镜像：
+$ pod repo remove master
+$ pod repo add master https://gitcafe.com/akuandev/Specs.git
+$ pod repo update
+如果想用oschina的镜像也可以把第二条命令 换成 http://git.oschina.net/akuandev/Specs.git 即可
+
+第二条命令执行的时候会比较耗时，这个时候要去把整个specs仓库clone一下，下载到 ~/.cocoapods里；
+cd  到该目录里，用du -sh *命令来查看文件大小，每隔一会看看，最终大小是190多M。
+
+
+
+6.更新 gem
+$ sudo gem update --system
+
+7.新建工程，并在终端用 cd 指令到文件夹内
+$ pod search 第三方
+
+8.新建 Podfile 文件
+$ touch Podfile
+
+9.编辑 Podfile 文件，并写入要添加的第三方库
+platform:ios, '8.0'
+
+pod 'AFNetworking', '~> 2.3.1'<-------第三方
+
+10.导入第三方库
+$ pod install
+
+11.退出终端
+6.更新 gem
+$ sudo gem update --system
+
+7.新建工程，并在终端用 cd 指令到文件夹内
+$ pod search 第三方
+
+8.新建 Podfile 文件
+$ touch Podfile
+
+9.编辑 Podfile 文件，并写入要添加的第三方库
+platform:ios, '8.0'
+
+pod 'AFNetworking', '~> 2.3.1'<-------第三方
+
+10.导入第三方库
+$ pod install
+
+$ pod install --verbose --no-repo-update 
+
+11.退出终端
